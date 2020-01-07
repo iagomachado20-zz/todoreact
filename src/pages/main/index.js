@@ -1,65 +1,23 @@
-import React, { Component } from 'react';
-import api from '../../services/api';
+import React from 'react';
 
-import './main.scss';
+import AddTodoComponent from '../../components/InputAddTodoComponent';
+import ListTodoComponent from '../../components/ListTodoComponent';
+import styled from "styled-components";
 
-class Main extends Component {
+const CardTodo = styled.section`
+    background: #f3f3f3;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.027);
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 50px;
+    border-radius: 10px;
+`;
 
-    state = {
-        products: [],
-        isLoading: false
-    }
-
-    componentDidMount() {
-
-        this.loadProducts();
-
-    }
-
-    loadProducts = async () => {
-
-        this.setState({
-            isLoading: true
-        });
-
-        await api.get(`/products`).then(res => {
-            
-            this.setState({ isLoading: false, products: res.data.docs });
-
-        });
-
-    };
-
-    openDetail(id) {
-
-        console.log(`meu id é ${id}`);
-
-    };
-
-    render() {
-
-        const { products } = this.state;
-
-        return (
-            <div>
-
-                { this.state.isLoading &&
-                    <h2>Carregando...</h2>
-                }
-                <div className="product-list">
-                    { products.map(product => (
-                        <article key={product._id} 
-                        onClick={(e) => this.openDetail(product._id, e)}>
-                            <strong>{ product.title }</strong>
-                            <p>{ product.description }</p>
-                            <a href="#">Acessar</a>
-                        </article>
-                    ))}
-                </div>
-            </div>
-        )
-    }
-
-}
+const Main = () => (
+    <CardTodo>
+        <AddTodoComponent></AddTodoComponent>
+        <ListTodoComponent></ListTodoComponent>
+    </CardTodo>
+);
 
 export default Main;

@@ -1,5 +1,4 @@
 import Main from "./pages/main";
-import FormBase from './pages/form/form';
 
 const routesConfig = [
 
@@ -8,12 +7,6 @@ const routesConfig = [
         component: Main, 
         exact: true,
         title: 'Home'
-    },
-    { 
-        path: '/formulario', 
-        component: FormBase, 
-        exact: true,
-        title: 'Formulario'
     }
 ];
 
